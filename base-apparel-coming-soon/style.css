@@ -39,12 +39,12 @@ body {
 .content {
     display: flex;
     flex-direction: column;
-    flex-basis: 60%;
+    flex-basis: 56%;
     background-image: url('./images/bg-pattern-desktop.svg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    padding: 4.6rem 15rem 13rem 13rem;
+    padding: 4.6rem 15rem 13rem 16rem;
     font-size: 5.5rem;
 }
 
@@ -86,23 +86,39 @@ body {
     height: 5.3rem;
 }
 
-.search input {
+.search__input {
     position: absolute;
     left: 0;
     top: 0;
-    height: 100%;
-    width: 100%;
-    border-radius: 3rem;
+    height: 98%;
+    width: 90%;
+    border-radius: 3rem 0 0 3rem;
     border: 1px solid var(--dark-grayish-red);
-    padding-left: 3.3rem;
+    padding-left: 3rem;
+    padding-right: 8rem;
     font-family: 'Josefin Sans', sans-serif;
 }
 
-.search input:focus {
+.search__input:invalid {
+    border: 2px solid var(--soft-red);
+}
+
+.search__input:invalid ~ .search__error-message,
+.search__input:invalid ~ .search__error-icon {
+    visibility: visible;
+}
+
+.search__input::placeholder {
+    color: var(--desaturated-red);
+    font-size: 1.6rem;
+    opacity: .8;
+}
+
+.search__input:focus {
     outline: none;
 }
 
-.search button {
+.search__button {
     position: absolute;
     top: 0;
     right: -2px;
@@ -119,9 +135,21 @@ body {
     box-shadow: 0 3px 24px 2px hsl(0deg 74% 74%);
 }
 
-.search::placeholder {
-    font-size: 1.7rem;
-    color: var(--desaturated-red);
+.search__error-message {
+    display: block;
+    visibility: hidden;
+    position: absolute;
+    bottom: -2rem;
+    margin-left: 3rem;
+    color: var(--soft-red);
+    font-size: 1.2rem;
+}
+
+.search__error-icon {
+    visibility: hidden;
+    position: absolute;
+    right: 100px;
+    top: -3px;
 }
 
 /* PICTURE */
@@ -145,7 +173,13 @@ body {
     }
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1200px) {
+    .content {
+        padding: 4rem 5rem;
+    }
+}
+
+@media only screen and (max-width: 800px) {
 
     html {
         font-size: 43.5%;
@@ -181,5 +215,17 @@ body {
 
     .logo img {
         width: 90px;
+    }
+
+    .search__error-icon {
+        top: 1px;
+    }
+
+    .search__input {
+        padding-right: 9.4rem;
+    }
+
+    .search__error-message {
+        font-size: 1.6rem;
     }
 }
